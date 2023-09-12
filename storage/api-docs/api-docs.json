@@ -1,0 +1,1121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "TodoAPI",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new user",
+                "description": "Registers a new user and returns user data and token",
+                "operationId": "registerUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "oleksii"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "oleksii@oleksii.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 14
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "oleksii"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "oleksii@oleksii.com"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "datetime",
+                                                    "example": "2023-09-12T14:56:20.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "datetime",
+                                                    "example": "2023-09-12T14:56:20.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "15|yzpxP554W4izIVAJwo1F737uF9VzbMr1bdO9L26E"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Log in an existing user",
+                "description": "Logs in a user and returns user data and token",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "oleksii@oleksii.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 14
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "oleksii"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "oleksii@oleksii.com"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "datetime",
+                                                    "example": "2023-09-12T14:56:20.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "datetime",
+                                                    "example": "2023-09-12T14:56:20.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "15|yzpxP554W4izIVAJwo1F737uF9VzbMr1bdO9L26E"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "user not found or password is incorrect"
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get current user",
+                "description": "Returns data of the currently authenticated user",
+                "operationId": "getCurrentUser",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "johndoe@example.com"
+                                        },
+                                        "email_verified_at": {
+                                            "type": "string",
+                                            "example": "null"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "datetime",
+                                            "example": "2023-09-10T16:20:30.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "datetime",
+                                            "example": "2023-09-10T16:20:30.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/list": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get list of tasks based on filters",
+                "description": "Returns list of tasks",
+                "operationId": "getTasks",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "in:todo,done|nullable"
+                                    },
+                                    "priority_min": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "priority_max": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "string|nullable"
+                                    },
+                                    "order_by": {
+                                        "type": "string",
+                                        "example": "in:created_at,completedAt,priority|nullable"
+                                    },
+                                    "order_direction": {
+                                        "type": "string",
+                                        "example": "in:asc,desc|nullable"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 94
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": null,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "example": "null"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/user_task": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get user tasks based on filters",
+                "description": "Returns user tasks",
+                "operationId": "getUserTasks",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "example": "in:todo,done|nullable"
+                                    },
+                                    "priority_min": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "priority_max": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "string|nullable"
+                                    },
+                                    "order_by": {
+                                        "type": "string",
+                                        "example": "in:created_at,completedAt,priority|nullable"
+                                    },
+                                    "order_direction": {
+                                        "type": "string",
+                                        "example": "in:asc,desc|nullable"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 94
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": null,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "example": "null"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/subtask": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get Subtasks based on filters and task_id",
+                "description": "Returns subtasks",
+                "operationId": "getSubtasks",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task_id": {
+                                        "type": "string",
+                                        "example": "required|integer"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "in:todo,done|nullable"
+                                    },
+                                    "priority_min": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "priority_max": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5|nullable"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "string|nullable"
+                                    },
+                                    "order_by": {
+                                        "type": "string",
+                                        "example": "in:created_at,completedAt,priority|nullable"
+                                    },
+                                    "order_direction": {
+                                        "type": "string",
+                                        "example": "in:asc,desc|nullable"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 94
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 92,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "example": "null"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/{task_id}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get task by task_id",
+                "description": "Returns task",
+                "operationId": "getTaskId",
+                "parameters": [
+                    {
+                        "name": "task_id",
+                        "in": "path",
+                        "description": "The ID of the task",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 94
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 92,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "example": "null",
+                                                "nullable": true
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/create_task": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "create task ",
+                "description": "create task",
+                "operationId": "create task",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "priority": {
+                                        "type": "integer",
+                                        "example": "required|integer|min:1|max:5"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "required|string"
+                                    },
+                                    "description": {
+                                        "type": "integer",
+                                        "example": "required|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 120
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/create_subtask": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "create subtask ",
+                "description": "create subtask",
+                "operationId": "create subtask",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task_id": {
+                                        "type": "integer",
+                                        "example": "required|integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer",
+                                        "example": "required|integer|min:1|max:5"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "required|string"
+                                    },
+                                    "description": {
+                                        "type": "integer",
+                                        "example": "required|string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 120
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12,
+                                                "nullable": true
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 119,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/update": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "update subtask ",
+                "description": "update subtask",
+                "operationId": "update subtask",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task_id": {
+                                        "type": "integer",
+                                        "example": "required|integer"
+                                    },
+                                    "priority": {
+                                        "type": "integer",
+                                        "example": "integer|min:1|max:5"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "string"
+                                    },
+                                    "description": {
+                                        "type": "integer",
+                                        "example": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 120
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12,
+                                                "nullable": true
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 119,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "todo"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "null"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/completed": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "completed task ",
+                "description": "completed task",
+                "operationId": "completed task",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task_id": {
+                                        "type": "integer",
+                                        "example": "required|integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 120
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 12,
+                                                "nullable": true
+                                            },
+                                            "parent_id": {
+                                                "type": "integer",
+                                                "example": 119,
+                                                "nullable": true
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task 0 for UserWest Nataliaville"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Description for task 0 of UserEast Francescaton"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "done"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "completedAt": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "datetime",
+                                                "example": "2023-09-10T16:20:31.000000Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/task/delete": {
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "delete task ",
+                "description": "delete task",
+                "operationId": "delete task",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "task_id": {
+                                        "type": "integer",
+                                        "example": "required|integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "401": {
+                "description": "Unauthenticated"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Bearer Token Authentication",
+                "name": "Bearer",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

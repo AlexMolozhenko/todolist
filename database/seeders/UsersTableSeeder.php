@@ -27,6 +27,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'user2@example.com',
             'password' => bcrypt('user'),
         ]);
-      $user2->createToken($user->email)->plainTextToken;
+      $user2->createToken($user2->email)->plainTextToken;
     }
 }

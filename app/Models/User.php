@@ -42,6 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get user's tasks
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function task()
     {
         return $this->hasMany(Task::class);
